@@ -49,6 +49,7 @@ import { XaiOAuthSection } from "./XaiOAuthSection";
 import {
   fetchModelsForConfig,
   fetchXaiOauthModels,
+  modelFetchRequestHeaders,
   showFetchModelsError,
   type FetchedModel,
 } from "@/lib/api/model-fetch";
@@ -619,6 +620,9 @@ export function CodexFormFields({
       isFullUrl,
       undefined,
       customUserAgent,
+      {
+        requestHeaders: modelFetchRequestHeaders(localProxyHeadersOverride),
+      },
     )
       .then((models) => {
         if (seq !== fetchModelsSeqRef.current) return;
@@ -642,6 +646,7 @@ export function CodexFormFields({
     codexApiKey,
     isFullUrl,
     customUserAgent,
+    localProxyHeadersOverride,
     isXaiOauthPreset,
     isXaiOauthAuthenticated,
     selectedXaiAccountId,
